@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books-Management</title>
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- FontAwesome for Social and Contact Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- custom css -->
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+
+  <body>
+    <!-- Mobile Top Header -->
+
+    <div class="mobile-header">
+      <div class="mobile-logo">
+        <img src="../assets/images/logo1.png" alt="Logo" />
+      </div>
+
+      <button id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="dashboard">
+      <div class="main-card">
+        <div class="row g-0">
+          <!-- Sidebar -->
+
+         <div class="col-lg-2 sidebar" id="sidebar">
+          <div class="logo desktop-logo">
+            <img src="../../images/logo3.png" alt="Logo" class="logo-img" />
+          </div>
+
+          <div class="menu">
+            <a href="#">
+              <i class="fa-solid fa-house"></i>
+
+              Dashboard
+            </a>
+
+            <a href="../admin/books.html">
+              <i class="fa-solid fa-book"></i>
+
+              Books
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-users"></i>
+
+              Members
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-id-card"></i>
+
+              Digital ID Cards
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-qrcode"></i>
+
+              QR Scanner
+            </a>
+
+            <a href="#" class="active">
+              <i class="fa-solid fa-book-open"></i>
+
+              Issue Book
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-arrow-rotate-left"></i>
+
+              Return Book
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-chart-line"></i>
+
+              Reports
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-gear"></i>
+
+              Settings
+            </a>
+          </div>
+
+          <div class="sidebar-footer">
+            <hr />
+
+            <a href="#" class="logout" id="logoutBtn">
+              <i class="fa-solid fa-right-from-bracket"></i>
+
+              Logout
+            </a>
+          </div>
+        </div>
+
+          <!-- Main Content -->
+
+          <div class="col-lg-10 blank-area" style="padding: 40px;">
+            <!-- Top Header -->
+            <div class="content-header">
+              <div>
+                <h2>Books Management</h2>
+                <p>Manage all books in your library</p>
+              </div>
+              <!-- modal -->
+              <div>
+                <button 
+                  class="animated-button" 
+                  type="button" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#addBookModal"
+                >
+                  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                  <span class="text">Add Book</span>
+                  <span class="circle"></span>
+                  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                </button>
+              </div>
+
+            
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text" placeholder="Search books..." />
+              </div>
+
+              <button class="filter-btn">
+                <i class="fa-solid fa-filter"></i>
+
+                Filter
+              </button>
+            </div>
+
+            <!-- Books Table -->
+            <div class="table-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Available</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody id="booksTableBody">
+                  <tr>
+                    <td>
+                      <div class="book-info">
+                        <div class="book-img">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <span>Atomic Habits</span>
+                      </div>
+                    </td>
+
+                    <td>James Clear</td>
+
+                    <td>Self Help</td>
+
+                    <td>10</td>
+
+                    <td>7</td>
+
+                    <td>
+                      <span class="status available"> Available </span>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button class="delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="book-info">
+                        <div class="book-img">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <span>Clean Code</span>
+                      </div>
+                    </td>
+
+                    <td>Robert C. Martin</td>
+
+                    <td>Programming</td>
+
+                    <td>8</td>
+
+                    <td>4</td>
+
+                    <td>
+                      <span class="status available"> Available </span>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button class="delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="book-info">
+                        <div class="book-img">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <span>The Psychology of Money</span>
+                      </div>
+                    </td>
+
+                    <td>Morgan Housel</td>
+
+                    <td>Finance</td>
+
+                    <td>6</td>
+
+                    <td>2</td>
+
+                    <td>
+                      <span class="status low"> Low Stock </span>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button class="delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="book-info">
+                        <div class="book-img">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <span>Deep Work</span>
+                      </div>
+                    </td>
+
+                    <td>Cal Newport</td>
+
+                    <td>Self Help</td>
+
+                    <td>5</td>
+
+                    <td>5</td>
+
+                    <td>
+                      <span class="status available"> Available </span>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button class="delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="book-info">
+                        <div class="book-img">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <span>Harry Potter</span>
+                      </div>
+                    </td>
+
+                    <td>J.K. Rowling</td>
+
+                    <td>Fantasy</td>
+
+                    <td>12</td>
+
+                    <td>9</td>
+
+                    <td>
+                      <span class="status available"> Available </span>
+                    </td>
+
+                    <td>
+                      <div class="actions">
+                        <button class="edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button class="delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Bottom Pagination -->
+
+              <div class="table-footer">
+                <p>Showing 1 to 5 of 25 entries</p>
+
+                <div class="pagination">
+                  <button class="active">1</button>
+                  <button>2</button>
+                  <button>3</button>
+                  <button>4</button>
+                  <button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ================= ADD BOOK MODAL ================= -->
+    <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="addBookForm">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Book Title</label>
+                <input type="text" class="form-control" id="bookTitleInput" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Author Name</label>
+                <input type="text" class="form-control" id="bookAuthorInput" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Category</label>
+                <input type="text" class="form-control" id="bookCategoryInput" placeholder="Programming, Self Help..." required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="bookIsbnInput" placeholder="e.g. 9780132350884">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Total Copies</label>
+                <input type="number" class="form-control" id="totalCopiesInput" min="1" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Book Cover Image</label>
+                <input type="file" class="form-control" id="bookImageInput" accept="image/*" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save & Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT BOOK MODAL -->
+<div class="modal fade" id="editBookModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="editBookForm">
+        <div class="modal-body">
+          <input type="hidden" id="editBookIdInput">
+          
+          <div class="mb-3">
+            <label class="form-label">Book Title</label>
+            <input type="text" id="editBookTitleInput" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Author</label>
+            <input type="text" id="editBookAuthorInput" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input type="text" id="editBookCategoryInput" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Total Copies</label>
+            <input type="number" id="editTotalCopiesInput" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">New Image (Optional)</label>
+            <input type="file" id="editBookImageInput" class="form-control" accept="image/*">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- =========================additional work by nishat==================
+====================================================================== -->
+
+
+
+<!-- Add / Edit Book Modal -->
+<div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookModalLabel" style="font-weight: 700; color: #1e293b;">Add New Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bookForm">
+          <input type="hidden" id="modalBookId" />
+          <div class="mb-3">
+            <label class="form-label" style="font-size: 13px; font-weight: 600;">Book Title</label>
+            <input type="text" class="form-control" id="modalBookTitle" required placeholder="Enter book title" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-size: 13px; font-weight: 600;">Author</label>
+            <input type="text" class="form-control" id="modalBookAuthor" required placeholder="Enter author name" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-size: 13px; font-weight: 600;">Category</label>
+            <select class="form-select" id="modalBookCategory" required>
+              <option value="Programming">Programming</option>
+              <option value="Productivity">Productivity</option>
+              <option value="Finance">Finance</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" style="font-size: 13px; font-weight: 600;">Status</label>
+            <select class="form-select" id="modalBookStatus" required>
+              <option value="Available">Available</option>
+              <option value="Issued">Issued</option>
+            </select>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background-color: #2563eb;">Save Book</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==============================================================================
+============================================================================= -->
+
+     <script>
+      const menuBtn = document.getElementById("menuBtn");
+
+      const sidebar = document.getElementById("sidebar");
+
+      const overlay = document.getElementById("overlay");
+
+      menuBtn.onclick = function () {
+        sidebar.classList.toggle("show");
+
+        overlay.classList.toggle("show");
+      };
+
+      overlay.onclick = function () {
+        sidebar.classList.remove("show");
+
+        overlay.classList.remove("show");
+      };
+    </script>
+
+    <!-- bootstrape js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="../../JS/books.js"></script>
+  </body>
+</html>
